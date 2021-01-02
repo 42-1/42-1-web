@@ -40,8 +40,11 @@ function App() {
                     textAlign: 'right',
                   }}
                 >
-                  <Meta title="Price" />
-                  <Meta title={ii.price} />
+                  {/* <Meta title="Price" /> */}
+                   {/* <Meta title={ii.price} /> */}
+                  <h3>
+                   <b>Price: {ii.price}</b>
+                  </h3>
                 </div>
               </Card>
             </Col>
