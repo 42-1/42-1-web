@@ -19,10 +19,10 @@ function App() {
       >
         {
           Product.map(ii =>
-            <Col xs={24} sm={24} md={16} lg={4} xl={4}>
+            <Col xs={24} sm={24} md={24} lg={4} xl={4} style={{border: "0.5px solid #eeeeee"}}>
               <Card
                 hoverable
-                style={{ width: 240, margin: 5, minHeight: 600, marginTop: 20 }}
+                style={{ width: "100hv", margin: 5, minHeight: 600, marginTop: 20,  }}
                 cover={<img alt="example" src={ii.img} />}
               > 
 
@@ -35,7 +35,6 @@ function App() {
                     right: 0,
                     bottom: 0,
                     width: '100%',
-                    borderTop: '1px solid #e9e9e9',
                     padding: '10px 16px',
                     background: '#fff',
                     textAlign: 'right',
