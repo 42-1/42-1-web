@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { PageHeader, Row, Col, Card  } from 'antd';
+import { PageHeader, Row, Col, Card, Space, Input  } from 'antd';
 import Product from './product.js'
 
 const { Meta } = Card;
@@ -8,22 +8,36 @@ function App() {
   return (
     <Fragment>
       <PageHeader
-        title="RND_1"
+        title="421"
+        style={{borderBottom: "1px solid black"}}
       />
+
+      <Space />
+
+
+      <Input 
+        addonBefore="Search"
+        placeholder={"Search Product Name"} 
+        style={{ width: "100%", marginTop: 20, marginBottom: 20, paddingRight: 20, paddingLeft: 20 }} 
+        size="large"
+      />
+
+
+      <Space />
       <Row
         gutter={16}
         style={{
-          padding: 10,
-          marginTop: 10
+          marginTop: 10,
+          padding: 20
         }}
       >
         {
           Product.map(ii =>
-            <Col xs={24} sm={24} md={24} lg={4} xl={4} style={{border: "0.5px solid #eeeeee"}}>
+            <Col xs={24} sm={24} md={24} lg={4} xl={4} style={{padding: 2}}>
               <Card
-                hoverable
-                style={{ width: "100hv", margin: 5, minHeight: 600, marginTop: 20,  }}
-                cover={<img alt="example" src={ii.img} />}
+                title={"Startech"}
+                style={{  minHeight: 600, marginTop: 20, zIndex: 100 }}
+                cover={<img style={{zIndex: 10, padding: 20}} alt="example" src={ii.img} />}
               > 
 
                 <b>{ii.name}</b>
