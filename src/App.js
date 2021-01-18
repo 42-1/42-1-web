@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input  } from 'antd';
-import Product from './product.js'
+import Product from './product_1.js'
 
 const { Meta } = Card;
 
@@ -14,7 +14,6 @@ function App() {
 
       <Space />
 
-
       <Input 
         addonBefore="Search"
         placeholder={"Search Product Name"} 
@@ -25,7 +24,7 @@ function App() {
 
       <Space />
       <Row
-        gutter={16}
+        gutter={24}
         style={{
           marginTop: 10,
           padding: 20
@@ -54,8 +53,6 @@ function App() {
                     textAlign: 'right',
                   }}
                 >
-                  {/* <Meta title="Price" /> */}
-                   {/* <Meta title={ii.price} /> */}
                   <h3>
                    <b>Price: {ii.price}</b>
                   </h3>
@@ -64,13 +61,6 @@ function App() {
             </Col>
           )
         }
-
-        {/* <Col xs={24} sm={24} md={16} lg={8} xl={8}>
-          Col
-        </Col>
-        <Col xs={24} sm={24} md={16} lg={8} xl={8}>
-          Col
-        </Col> */}
       </Row>
     </Fragment>
   );
