@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form } from 'antd';
+import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message } from 'antd';
 import { LinkOutlined } from '@ant-design/icons'
 import api from '../service/api'
 
@@ -66,6 +66,8 @@ function Home() {
                                         width: "100%",
                                     }}
                                     onChange={async (e) => {
+                                        message.destroy()
+                                        message.loading("Please wait...", 0)
                                         let list = await api.ax_post({
                                             path: "/search",
                                             params: {
@@ -73,6 +75,8 @@ function Home() {
                                                 name: e
                                             }
                                         })
+                                        message.destroy()
+                                        message.destroy()
                                         setProduct(list.return)
                                     }}
                                 >
