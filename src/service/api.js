@@ -2,7 +2,7 @@
 const axios = require('axios').default
 
 const url_1 = "http://localhost:5011/xxyyzz"
-const url_2 = "http://core.stupidarnob.com/xxyyzz"
+const url_2 = "https://core.stupidarnob.com/xxyyzz"
 
 const url = url_2
 
