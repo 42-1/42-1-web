@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import { Drawer, Button } from 'antd';
 import { LinkOutlined } from '@ant-design/icons'
 
@@ -6,17 +7,14 @@ function PageViewDrawer({ pageView }) {
 
     const [visible, setVisible] = useState(false);
 
-    useEffect(() => {
-        console.log(pageView)
-    })
-
     const showDrawer = () => {
-        // window.open(pageView, "_blank")}
         setVisible(true);
     };
+    
     const onClose = () => {
         setVisible(false);
     };
+
     return (
         <>
             {/* <Button type="primary" onClick={showDrawer}>
@@ -32,9 +30,23 @@ function PageViewDrawer({ pageView }) {
                 closable
                 onClose={onClose}
                 visible={visible}
-                width={"95%"}
+                width={"85%"}
             >
-                <iframe src={pageView} width="100%" height="90%" frameBorder="0" style={{marginTop: 40}}/>
+                <iframe src={pageView} width="100%" height="90%" frameBorder="0" style={{ marginTop: 40 }} />
+                <div
+                    style={{
+                        position: 'absolute',
+                        right: 0,
+                        bottom: 0,
+                        width: '100%',
+                        padding: '10px 16px',
+                        background: '#fff',
+                        textAlign: 'right',
+                        borderTop: '1px solid #ebebeb'
+                    }}
+                >
+                    <Button type="primary" onClick={onClose}>Close</Button>
+                </div>
             </Drawer>
         </>
     );

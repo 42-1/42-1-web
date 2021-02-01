@@ -1,6 +1,6 @@
+/* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message } from 'antd';
-import { LinkOutlined } from '@ant-design/icons'
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
 
@@ -37,7 +37,7 @@ function Home() {
             <div style={{ margin: 20 }}>
                 <Skeleton active loading={loading} />
             </div>
-            
+
             {
                 !loading &&
                 <>
