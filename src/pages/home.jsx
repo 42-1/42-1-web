@@ -16,6 +16,7 @@ function Home() {
 
     async function getProductAll() {
         setLoading(true)
+        setProduct([])
         let list = await api.ax_get({ path: "/list" })
         if (list.status) {
             setProduct(list.return)
@@ -26,69 +27,78 @@ function Home() {
     return (
         <Fragment>
             <PageHeader
-                title="Shop 421"
+                title="42-1"
                 style={{ borderBottom: "1px solid black" }}
             />
 
             <Space />
-
+            
             <Skeleton loading={loading}>
-                <Form layout="vertical" style={{ padding: 20 }}>
-                    <Row gutter={16}>
-                        <Col span={12}>
-                            <Form.Item label="Search">
-                                <Input
-                                    placeholder={"Search Product Name"}
-                                    style={{
-                                        width: "100%",
-                                    }}
-                                    onChange={async (e) => {
-                                        let list = await api.ax_post({
-                                            path: "/search",
-                                            params: {
-                                                type: "search",
-                                                name: e.target.value
-                                            }
-                                        })
-                                        setProduct(list.return)
-                                    }}
-                                    size="large"
-                                />
-                            </Form.Item>
-                        </Col>
+                <center>
+                    <Form layout="vertical" style={{ padding: 20 }}>
+                        <Row gutter={16} style={{ maxWidth: 1600 }}>
+                            <Col
+                                xs={24} sm={24} md={12} lg={12} xl={12}
+                            >
+                                <Form.Item label="Search">
+                                    <Input
+                                        placeholder={"Search Product Name"}
+                                        style={{
+                                            width: "100%",
+                                        }}
+                                        onChange={async (e) => {
+                                            let list = await api.ax_post({
+                                                path: "/search",
+                                                params: {
+                                                    type: "search",
+                                                    name: e.target.value
+                                                }
+                                            })
+                                            setProduct(list.return)
+                                        }}
+                                        size="large"
+                                    />
+                                </Form.Item>
+                            </Col>
 
-                        <Col span={12}>
-                            <Form.Item label="Product Type">
-                                <Select
-                                    size="large"
-                                    placeholder="Select Product Type"
-                                    style={{
-                                        width: "100%",
-                                    }}
-                                    onChange={async (e) => {
-                                        message.destroy()
-                                        message.loading("Please wait...", 0)
-                                        let list = await api.ax_post({
-                                            path: "/search",
-                                            params: {
-                                                type: "product",
-                                                name: e
-                                            }
-                                        })
-                                        message.destroy()
-                                        message.destroy()
-                                        setProduct(list.return)
-                                    }}
-                                >
-                                    <Select.Option key="1" value="headphone">Headphone</Select.Option>
-                                    <Select.Option key="2" value="keyboards">Keyboards</Select.Option>
-                                    <Select.Option key="3" value="micro-sd-card">Micro/SD card</Select.Option>
-                                    <Select.Option key="4" value="microphone">Microphone</Select.Option>
-                                </Select>
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                </Form>
+                            <Col
+                                xs={24} sm={24} md={12} lg={12} xl={12}
+                            >
+                                <Form.Item label="Product Type">
+                                    <Select
+                                        size="large"
+                                        placeholder="Select Product Type"
+                                        style={{
+                                            width: "100%",
+                                        }}
+                                        onChange={async (e) => {
+                                            message.destroy()
+                                            message.loading("Please wait...", 0)
+                                            setProduct([])
+                                            setLoading(true)
+                                            let list = await api.ax_post({
+                                                path: "/search",
+                                                params: {
+                                                    type: "product",
+                                                    name: e
+                                                }
+                                            })
+                                            message.destroy()
+                                            message.destroy()
+                                            setProduct(list.return)
+                                            setLoading(false)
+                                        }}
+                                    >
+                                        <Select.Option key="1" value="headphone">Headphone</Select.Option>
+                                        <Select.Option key="2" value="keyboards">Keyboards</Select.Option>
+                                        <Select.Option key="3" value="micro-sd-card">Micro/SD card</Select.Option>
+                                        <Select.Option key="4" value="microphone">Microphone</Select.Option>
+                                    </Select>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                    </Form>
+                </center>
 
                 {
                     product.length === 0 &&
@@ -97,28 +107,30 @@ function Home() {
                         title="No Product Found"
                     />
                 }
+
                 <center>
                     <Row
                         gutter={24}
                         style={{
-                            marginRight: 0,
                             marginLeft: 0,
+                            marginRight: 0,
                             paddingTop: 10,
-                            paddingLeft: 5,
-                            paddingRight: 5,
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            maxWidth: 1600
                         }}
                         hidden={product.length === 0 ? true : false}
                     >
                         {
                             product.map(ii =>
                                 <Col
-                                    xs={20} sm={16} md={4} lg={4} xl={4}
+                                    xs={24} sm={12} md={12} lg={8} xl={4}
                                     style={{ paddingTop: 10 }}
                                 >
                                     <Card
                                         title={"Startech"}
-                                        style={{ minHeight: 550, marginTop: 20, width: 240 }}
-                                        cover={<img style={{ padding: 8, width: 200, height: 200 }} alt="aaxx" src={ii.img} />}
+                                        style={{ minHeight: 550, marginTop: 20 }}
+                                        cover={<img style={{ padding: 8, width: 180, height: 180 }} alt="aaxx" src={ii.img} />}
                                         extra={[
                                             <Button
                                                 type="primary"
@@ -139,7 +151,7 @@ function Home() {
                                                 bottom: 0,
                                                 width: '100%',
                                                 padding: '10px 16px',
-                                                background: '#fff',
+                                                background: '#cdcdcd',
                                                 textAlign: 'right',
                                                 borderTop: '1px solid black'
                                             }}
