@@ -128,7 +128,7 @@ function Home() {
                                     style={{ paddingTop: 10 }}
                                 >
                                     <Card
-                                        title={<p style={{float: "left"}}>Startech</p>}
+                                        title={<img src={"https://www.startech.com.bd/image/catalog/logo.png"} style={{height: 40, width: 70, float: "left"}} />}
                                         style={{ minHeight: 550, marginTop: 20 }}
                                         cover={<img style={{ padding: 8, width: 180, height: 180 }} alt="aaxx" src={ii.img} />}
                                         extra={[
