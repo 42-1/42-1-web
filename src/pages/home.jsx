@@ -84,8 +84,6 @@ function Home() {
                                     <Select.Option key="2" value="keyboards">Keyboards</Select.Option>
                                     <Select.Option key="3" value="micro-sd-card">Micro/SD card</Select.Option>
                                     <Select.Option key="4" value="microphone">Microphone</Select.Option>
-                                    <Select.Option key="5" value="headphone">Headphone</Select.Option>
-                                    <Select.Option key="6" value="headphone">Headphone</Select.Option>
                                 </Select>
                             </Form.Item>
                         </Col>
@@ -99,64 +97,63 @@ function Home() {
                         title="No Product Found"
                     />
                 }
-
-
-
-                <Row
-                    gutter={24}
-                    style={{
-                        marginTop: 2,
-                        marginRight: 0,
-                        marginLeft: 0,
-                        padding: 10
-                    }}
-                    hidden={product.length === 0 ? true : false}
-                >
-                    {
-                        product.map(ii =>
-                            <Col
-                                xs={24} sm={24} md={24} lg={24} xl={4}
-                                style={{ paddingTop: 10, paddingLeft: 30, paddingRight: 30 }}
-                            >
-                                <Card
-                                    title={"Startech"}
-                                    style={{ minHeight: 600, marginTop: 20 }}
-                                    cover={<img style={{ zIndex: 10, padding: 20 }} alt="aaxx" src={ii.img} />}
-                                    extra={[
-                                        <Button
-                                            type="primary"
-                                            icon={<LinkOutlined />}
-                                            onClick={() => {
-                                                window.open(ii.url, "_blank")
-                                            }}
-                                        />
-                                    ]}
+                <center>
+                    <Row
+                        gutter={24}
+                        style={{
+                            marginRight: 0,
+                            marginLeft: 0,
+                            paddingTop: 10,
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                        }}
+                        hidden={product.length === 0 ? true : false}
+                    >
+                        {
+                            product.map(ii =>
+                                <Col
+                                    xs={20} sm={16} md={4} lg={4} xl={4}
+                                    style={{ paddingTop: 10 }}
                                 >
-
-                                    <b>{ii.name}</b>
-                                    <Meta style={{ marginTop: 5 }} description={ii.details} />
-
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            right: 0,
-                                            bottom: 0,
-                                            width: '100%',
-                                            padding: '10px 16px',
-                                            background: '#fff',
-                                            textAlign: 'right',
-                                            borderTop: '1px solid black'
-                                        }}
+                                    <Card
+                                        title={"Startech"}
+                                        style={{ minHeight: 550, marginTop: 20, width: 240 }}
+                                        cover={<img style={{ padding: 8, width: 200, height: 200 }} alt="aaxx" src={ii.img} />}
+                                        extra={[
+                                            <Button
+                                                type="primary"
+                                                icon={<LinkOutlined />}
+                                                onClick={() => window.open(ii.url, "_blank")}
+                                            />
+                                        ]}
+                                        onClick={() => window.open(ii.url, "_blank")}
                                     >
-                                        <h3>
-                                            <b>Price: {ii.price}</b>
-                                        </h3>
-                                    </div>
-                                </Card>
-                            </Col>
-                        )
-                    }
-                </Row>
+
+                                        <b>{ii.name}</b>
+                                        <Meta style={{ marginTop: 5 }} description={ii.details} />
+
+                                        <div
+                                            style={{
+                                                position: 'absolute',
+                                                right: 0,
+                                                bottom: 0,
+                                                width: '100%',
+                                                padding: '10px 16px',
+                                                background: '#fff',
+                                                textAlign: 'right',
+                                                borderTop: '1px solid black'
+                                            }}
+                                        >
+                                            <h3>
+                                                <b>Price: {ii.price}</b>
+                                            </h3>
+                                        </div>
+                                    </Card>
+                                </Col>
+                            )
+                        }
+                    </Row>
+                </center>
             </Skeleton>
         </Fragment>
     );
