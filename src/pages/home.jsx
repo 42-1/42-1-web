@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message } from 'antd';
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
+import SignIN from '../components/sign'
 
 const { Meta } = Card;
 
@@ -30,6 +31,9 @@ function Home() {
             <PageHeader
                 title="42-1"
                 style={{ borderBottom: "1px solid black" }}
+                extra={[
+                    <SignIN />,
+                ]}
             />
 
             <Space />
@@ -41,9 +45,10 @@ function Home() {
             {
                 !loading &&
                 <>
+                    {/* NOTE Searching */}
                     <center>
                         <Form layout="vertical" style={{ padding: 10 }}>
-                            <Row gutter={16} style={{ maxWidth: 1600 }}>
+                            <Row gutter={16} style={{ maxWidth: 1400 }}>
                                 <Col
                                     xs={24} sm={24} md={12} lg={12} xl={12}
                                 >
@@ -107,6 +112,8 @@ function Home() {
                         </Form>
                     </center>
 
+
+                    {/* NOTE No Product Found */}
                     {
                         product.length === 0 &&
                         <Result
@@ -115,6 +122,7 @@ function Home() {
                         />
                     }
 
+                    {/* NOTE Product Details */}
                     <center>
                         <Row
                             gutter={24}
@@ -122,7 +130,7 @@ function Home() {
                                 marginLeft: 0,
                                 marginRight: 0,
                                 paddingTop: 10,
-                                maxWidth: 1600
+                                maxWidth: 1400
                             }}
                             hidden={product.length === 0 ? true : false}
                         >
@@ -133,24 +141,54 @@ function Home() {
                                         style={{ paddingTop: 10 }}
                                     >
                                         <Card
-                                            title={<img src={"https://www.startech.com.bd/image/catalog/logo.png"} style={{ height: 40, width: 70, float: "left" }} />}
-                                            style={{ minHeight: 550, marginTop: 20 }}
-                                            cover={
+                                            title={
+                                                ii.source === "startech" && 
                                                 <img 
-                                                    style={{ padding: 8, width: 180, height: 180 }} 
-                                                    alt={ii.name} 
-                                                    src={ii.img} 
-                                                    onClick={() => window.open(ii.url, "_blank")}
+                                                    src={"https://www.startech.com.bd/image/catalog/logo.png"} 
+                                                    style={{ height: 40, width: 85, float: "left" }} 
                                                 />
                                             }
-                                            extra={[
-                                                <PageViewDrawer pageView={ii.url}/>
-                                            ]}
+                                            style={{ minHeight: 600, marginTop: 20 }}
+                                            cover={
+                                                <img
+                                                    style={{ padding: 8, width: 180, height: 180 }}
+                                                    alt={ii.name}
+                                                    src={ii.img}
+                                                    // onClick={() => window.open(ii.url, "_blank")}
+                                                />
+                                            }
                                         >
 
                                             <b>{ii.name}</b>
                                             <Meta style={{ marginTop: 5 }} description={ii.details} />
 
+                                            <div
+                                                style={{
+                                                    position: 'absolute',
+                                                    right: 0,
+                                                    bottom: 65,
+                                                    width: '100%',
+                                                    marginBottom: 2
+                                                }}
+                                            >
+                                                <Button
+                                                    type="primary"
+                                                    size="small"
+                                                    block
+                                                >
+                                                    Add to Cart
+                                                </Button>
+                                            </div>
+                                            <div
+                                                style={{
+                                                    position: 'absolute',
+                                                    right: 0,
+                                                    bottom: 42,
+                                                    width: '100%',
+                                                }}
+                                            >
+                                                <PageViewDrawer pageView={ii.url} />
+                                            </div>
                                             <div
                                                 style={{
                                                     position: 'absolute',
@@ -163,9 +201,7 @@ function Home() {
                                                     borderTop: '1px solid black'
                                                 }}
                                             >
-                                                <h3>
-                                                    <b>Price: {ii.price}</b>
-                                                </h3>
+                                                <b>Price: {ii.price}</b>
                                             </div>
                                         </Card>
                                     </Col>
@@ -175,7 +211,6 @@ function Home() {
                     </center>
                 </>
             }
-
         </Fragment>
     );
 }

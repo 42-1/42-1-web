@@ -22,15 +22,17 @@ function PageViewDrawer({ pageView }) {
             </Button> */}
             <Button
                 type="primary"
-                icon={<LinkOutlined />}
+                size="small"
                 onClick={showDrawer}
-            />
+                block
+            >View</Button>
+
             <Drawer
                 placement="right"
-                closable
+                closable={false}
                 onClose={onClose}
                 visible={visible}
-                width={"85%"}
+                width={"100%"}
             >
                 <iframe src={pageView} width="100%" height="90%" frameBorder="0" style={{ marginTop: 40 }} />
                 <div
@@ -45,7 +47,7 @@ function PageViewDrawer({ pageView }) {
                         borderTop: '1px solid #ebebeb'
                     }}
                 >
-                    <Button type="primary" onClick={onClose}>Close</Button>
+                    <Button type="default" block onClick={onClose}>Close</Button>
                 </div>
             </Drawer>
         </>
