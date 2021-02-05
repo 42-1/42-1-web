@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Drawer, Button } from 'antd';
 
-function PageViewDrawer({ pageView }) {
+function AddToCart({ pageView }) {
 
     const [visible, setVisible] = useState(false);
 
@@ -17,20 +17,21 @@ function PageViewDrawer({ pageView }) {
     return (
         <>
             <Button
-                type="primary"
-                size="small"
+                type="default"
                 onClick={showDrawer}
-                block
-            >View</Button>
+            >
+                Add To Cart
+            </Button>
 
             <Drawer
+                title="Add To Cart"
                 placement="right"
-                closable={false}
+                closable
                 onClose={onClose}
                 visible={visible}
                 width={"100%"}
             >
-                <iframe src={pageView} width="100%" height="90%" frameBorder="0" style={{ marginTop: 40 }} />
+                
                 <div
                     style={{
                         position: 'absolute',
@@ -50,4 +51,4 @@ function PageViewDrawer({ pageView }) {
     );
 };
 
-export default PageViewDrawer
+export default AddToCart

@@ -36,6 +36,7 @@ function SignIN({ pageView }) {
     
             jscookie.set("userid", details.user_id)
             setVisible(false);
+            window.location.reload()
         }   
     }
 
@@ -44,7 +45,6 @@ function SignIN({ pageView }) {
             <Button
                 type="primary"
                 onClick={showDrawer}
-                block
                 hidden={jscookie.get("userid")}
             >Login</Button>
 
@@ -56,8 +56,8 @@ function SignIN({ pageView }) {
                     message.info("User Logout")
                     jscookie.remove("userid")
                     setForceUpdate(Number(new Date()))
+                    window.location.reload()
                 }}
-                block
                 hidden={!jscookie.get("userid")}
             >Logout</Button>
 

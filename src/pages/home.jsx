@@ -1,9 +1,12 @@
 /* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message } from 'antd';
+import jscookie from 'js-cookie'
+
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
 import SignIN from '../components/sign'
+import AddToCart from '../components/addtocart'
 
 const { Meta } = Card;
 
@@ -12,9 +15,11 @@ function Home() {
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(true)
 
+    
     useEffect(() => {
         getProductAll()
     }, [])
+
 
     async function getProductAll() {
         setLoading(true)
@@ -26,21 +31,39 @@ function Home() {
         setLoading(false)
     }
 
+
+    async function addForCart({ details }) {
+
+        let userid = jscookie.get("userid")
+        await api.ax_post({
+            path: "/addtocart", params: {
+                userid,
+                details
+            }
+        })
+
+        message.destroy()
+        message.info("Add To Cart")
+    }
+
     return (
         <Fragment>
-            <PageHeader
-                title="42-1"
-                style={{ borderBottom: "1px solid black" }}
-                extra={[
-                    <SignIN />,
-                ]}
-            />
+            <center>
+                <PageHeader
+                    title="42-1"
+                    style={{ borderBottom: "1px solid white", maxWidth: 1400, }}
+                    extra={[
+                        <AddToCart />,
+                        <SignIN />,
+                    ]}
+                />
 
-            <Space />
+                <Space />
 
-            <div style={{ margin: 20 }}>
-                <Skeleton active loading={loading} />
-            </div>
+                <div style={{ margin: 20,  maxWidth: 1400, }}>
+                    <Skeleton active loading={loading} />
+                </div>
+            </center>
 
             {
                 !loading &&
@@ -130,31 +153,40 @@ function Home() {
                                 marginLeft: 0,
                                 marginRight: 0,
                                 paddingTop: 10,
-                                maxWidth: 1400
+                                maxWidth: 1400,
+                                marginBottom: 100
                             }}
                             hidden={product.length === 0 ? true : false}
                         >
                             {
                                 product.map(ii =>
                                     <Col
-                                        xs={24} sm={12} md={12} lg={8} xl={4}
+                                        xs={12} sm={12} md={12} lg={8} xl={4}
                                         style={{ paddingTop: 10 }}
                                     >
                                         <Card
                                             title={
-                                                ii.source === "startech" && 
-                                                <img 
-                                                    src={"https://www.startech.com.bd/image/catalog/logo.png"} 
-                                                    style={{ height: 40, width: 85, float: "left" }} 
+                                                ii.source === "startech" &&
+                                                <img
+                                                    src={"https://www.startech.com.bd/image/catalog/logo.png"}
+                                                    style={{ height: 32, width: 85, float: "left" }}
                                                 />
                                             }
-                                            style={{ minHeight: 600, marginTop: 20 }}
+                                            style={{
+                                                minHeight: 550,
+                                                marginTop: 20,
+                                                marginBottom: 20,
+                                            }}
                                             cover={
                                                 <img
-                                                    style={{ padding: 8, width: 180, height: 180 }}
+                                                    style={{
+                                                        padding: 8,
+                                                        width: 120,
+                                                        height: 120,
+                                                        marginTop: 5
+                                                    }}
                                                     alt={ii.name}
                                                     src={ii.img}
-                                                    // onClick={() => window.open(ii.url, "_blank")}
                                                 />
                                             }
                                         >
@@ -175,8 +207,10 @@ function Home() {
                                                     type="primary"
                                                     size="small"
                                                     block
+                                                    disabled={!jscookie.get("userid")}
+                                                    onClick={() => addForCart({ details: ii })}
                                                 >
-                                                    Add to Cart
+                                                   { jscookie.get("userid") ? "Add to Cart" : "Login Required"}
                                                 </Button>
                                             </div>
                                             <div
@@ -198,7 +232,7 @@ function Home() {
                                                     padding: '10px 16px',
                                                     background: '#cdcdcd',
                                                     textAlign: 'right',
-                                                    borderTop: '1px solid black'
+                                                    borderTop: '1px solid #cdcdcd'
                                                 }}
                                             >
                                                 <b>Price: {ii.price}</b>
