@@ -15,7 +15,7 @@ function Home() {
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(true)
 
-    
+
     useEffect(() => {
         getProductAll()
     }, [])
@@ -60,7 +60,7 @@ function Home() {
 
                 <Space />
 
-                <div style={{ margin: 20,  maxWidth: 1400, }}>
+                <div style={{ margin: 20, maxWidth: 1400, }}>
                     <Skeleton active loading={loading} />
                 </div>
             </center>
@@ -166,16 +166,23 @@ function Home() {
                                     >
                                         <Card
                                             title={
-                                                ii.source === "startech" &&
-                                                <img
-                                                    src={"https://www.startech.com.bd/image/catalog/logo.png"}
-                                                    style={{ height: 32, width: 85, float: "left" }}
-                                                />
+                                                ii.source === "startech" ? (
+                                                    <img
+                                                        src={"https://www.startech.com.bd/image/catalog/logo.png"}
+                                                        style={{ height: 32, width: 85, float: "left" }}
+                                                    />
+                                                ) : ii.source === "ryanscomputers" ? (
+                                                    <img
+                                                        src={"https://www.ryanscomputers.com/assets/website/img/ryans-computers.svg"}
+                                                        style={{ height: 32, width: 85, float: "left" }}
+                                                    />
+                                                ) : ""
                                             }
                                             style={{
                                                 minHeight: 550,
                                                 marginTop: 20,
                                                 marginBottom: 20,
+                                                overflow: "hidden"
                                             }}
                                             cover={
                                                 <img
@@ -192,7 +199,14 @@ function Home() {
                                         >
 
                                             <b>{ii.name}</b>
-                                            <Meta style={{ marginTop: 5 }} description={ii.details} />
+                                            <Meta 
+                                                style={{ 
+                                                    marginTop: 5, 
+                                                    height: 110, 
+                                                    overflow: "hidden" 
+                                                }} 
+                                                description={ii.details} 
+                                            />
 
                                             <div
                                                 style={{
@@ -210,7 +224,7 @@ function Home() {
                                                     disabled={!jscookie.get("userid")}
                                                     onClick={() => addForCart({ details: ii })}
                                                 >
-                                                   { jscookie.get("userid") ? "Add to Cart" : "Login Required"}
+                                                    {jscookie.get("userid") ? "Add to Cart" : "Login Required"}
                                                 </Button>
                                             </div>
                                             <div
