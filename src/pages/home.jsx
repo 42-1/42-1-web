@@ -212,7 +212,7 @@ function Home() {
                             </Row>
                         </Form>
                         <ins 
-                            class="adsbygoogle"
+                            className="adsbygoogle"
                             style={{display:"inline-block", width:728, height:90}}
                             data-ad-client="ca-pub-4319664345109203"
                             data-ad-slot="3781032952"
