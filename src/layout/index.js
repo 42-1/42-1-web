@@ -3,8 +3,7 @@ import { Empty, Button } from 'antd';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 import Home from './../pages/home'
 
@@ -15,8 +14,6 @@ export default function Layout() {
                 <Route path="/">
                     <Home />
                 </Route>
-
-
                 <Route path="*">
                     <NoMatch />
                 </Route>

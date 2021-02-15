@@ -1,10 +1,12 @@
 /* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
-import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message } from 'antd';
+import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message, Progress } from 'antd';
 import jscookie from 'js-cookie'
 
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
+import loadingGIF from './../loading.gif'
+
 import SignIN from '../components/sign'
 import AddToCart from '../components/addtocart'
 
@@ -49,23 +51,56 @@ function Home() {
 
     return (
         <Fragment>
-            <center>
-                <PageHeader
-                    title="42-1"
-                    style={{ borderBottom: "1px solid #e9e9e9", maxWidth: 1400, }}
-                    extra={[
-                        // <AddToCart />,
-                        // <SignIN />,
-                    ]}
-                />
+            {
+                loading &&
+                <>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            right: 0,
+                            top: -10,
+                            width: '110%',
+                            position: "fixed",
+                            marginLeft: -20,
+                            marginRight: -20,
+                        }}
+                    >
+                        <Progress percent={100} status="active" showInfo={false} />
+                    </div>
 
-                <Space />
+                    <div
+                        style={{
+                            width: '110%',
+                            position: "fixed",
+                            top: "12%",
+                            left: "40%",
+                        }}
+                    >
+                        <img src={loadingGIF} />
+                    </div>
+                </>
+            }
+            {
+                !loading &&
+                <div>
+                    <center>
+                        <PageHeader
+                            title="42-1"
+                            style={{ borderBottom: "1px solid #e9e9e9", maxWidth: 1400, }}
+                            extra={[
+                                // <AddToCart />,
+                                // <SignIN />,
+                            ]}
+                        />
+                    </center>
 
-                <div style={{ margin: 20, maxWidth: 1400, }}>
-                    <Skeleton active loading={loading} />
+                    <Space />
+
+                    <div style={{ margin: 20, maxWidth: 1400, }}>
+                        <Skeleton active loading={loading} />
+                    </div>
                 </div>
-            </center>
-
+            }
             {
                 !loading &&
                 <>
@@ -73,11 +108,15 @@ function Home() {
                     <center>
                         <Form
                             layout="vertical"
-                            style={{ padding: 10 }}
+                            style={{
+                                padding: 10,
+                                marginLeft: "auto",
+                                marginRight: "auto"
+                            }}
                         >
                             <Row
                                 gutter={16}
-                                style={{ maxWidth: 1200 }}
+                                style={{ maxWidth: 1200, textAlign: "left" }}
                             >
                                 <Col
                                     xs={24} sm={24} md={12} lg={12} xl={12}
@@ -135,7 +174,7 @@ function Home() {
                                                 setselectedproduct(e)
                                                 setLoading(false)
                                             }}
-                                        >   
+                                        >
                                             <Select.Option key="0" value="0" disabled>Select Product Type</Select.Option>
                                             <Select.Option key="1" value="headphone">Headphone</Select.Option>
                                             <Select.Option key="2" value="keyboards">Keyboards</Select.Option>
