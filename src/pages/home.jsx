@@ -31,7 +31,7 @@ function Home() {
         if (list.status) {
             setProduct(list.return)
         }
-        setLoading(false)
+        // setLoading(false)
     }
 
 
@@ -73,10 +73,21 @@ function Home() {
                             width: '110%',
                             position: "fixed",
                             top: "12%",
-                            left: "40%",
                         }}
                     >
-                        <img src={loadingGIF} />
+                        <Row>
+                            <Col
+                                xs={0} sm={0} md={10} lg={9} xl={9}
+                            />
+                          
+                            <Col
+                                xs={24} sm={24} md={10} lg={8} xl={8}
+
+                            >
+                                <img src={loadingGIF} style={{height: 250}}/>
+                            </Col>
+                        </Row>
+
                     </div>
                 </>
             }
