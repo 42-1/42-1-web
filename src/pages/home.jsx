@@ -13,8 +13,9 @@ const { Meta } = Card;
 function Home() {
 
     const [product, setProduct] = useState([])
+    const [selectedproduct, setselectedproduct] = useState("0")
     const [loading, setLoading] = useState(true)
-
+    const [forceupdate, setForceupdate] = useState(Number(new Date()))
 
     useEffect(() => {
         getProductAll()
@@ -51,10 +52,10 @@ function Home() {
             <center>
                 <PageHeader
                     title="42-1"
-                    style={{ borderBottom: "1px solid white", maxWidth: 1400, }}
+                    style={{ borderBottom: "1px solid #e9e9e9", maxWidth: 1400, }}
                     extra={[
-                        <AddToCart />,
-                        <SignIN />,
+                        // <AddToCart />,
+                        // <SignIN />,
                     ]}
                 />
 
@@ -70,8 +71,14 @@ function Home() {
                 <>
                     {/* NOTE Searching */}
                     <center>
-                        <Form layout="vertical" style={{ padding: 10 }}>
-                            <Row gutter={16} style={{ maxWidth: 1400 }}>
+                        <Form
+                            layout="vertical"
+                            style={{ padding: 10 }}
+                        >
+                            <Row
+                                gutter={16}
+                                style={{ maxWidth: 1200 }}
+                            >
                                 <Col
                                     xs={24} sm={24} md={12} lg={12} xl={12}
                                 >
@@ -101,6 +108,7 @@ function Home() {
                                 >
                                     <Form.Item label="Product Type">
                                         <Select
+                                            value={selectedproduct}
                                             size="large"
                                             placeholder="Select Product Type"
                                             style={{
@@ -110,7 +118,9 @@ function Home() {
                                                 message.destroy()
                                                 message.loading("Please wait...", 0)
                                                 setProduct([])
+                                                setForceupdate(Number(new Date()))
                                                 setLoading(true)
+                                                setselectedproduct("0")
                                                 let list = await api.ax_post({
                                                     path: "/search",
                                                     params: {
@@ -120,14 +130,38 @@ function Home() {
                                                 })
                                                 message.destroy()
                                                 message.destroy()
+                                                setForceupdate(Number(new Date()))
                                                 setProduct(list.return)
+                                                setselectedproduct(e)
                                                 setLoading(false)
                                             }}
-                                        >
+                                        >   
+                                            <Select.Option key="0" value="0" disabled>Select Product Type</Select.Option>
                                             <Select.Option key="1" value="headphone">Headphone</Select.Option>
                                             <Select.Option key="2" value="keyboards">Keyboards</Select.Option>
                                             <Select.Option key="3" value="micro-sd-card">Micro/SD card</Select.Option>
                                             <Select.Option key="4" value="microphone">Microphone</Select.Option>
+
+                                            <Select.Option key="5" value="casing"> Casing </Select.Option>
+                                            <Select.Option key="6" value="casing-cooler">Casing Cooler </Select.Option>
+                                            <Select.Option key="7" value="power-supply">Power Supply </Select.Option>
+                                            <Select.Option key="8" value="water-or-liquid-cooling"> Water or Liquid Cooling</Select.Option>
+                                            <Select.Option key="9" value="processor">Processor </Select.Option>
+                                            <Select.Option key="10" value="CPU-Cooler">CPU Cooler </Select.Option>
+                                            <Select.Option key="11" value="motherboard"> Motherboard</Select.Option>
+                                            <Select.Option key="12" value="graphics-card">Graphics Card </Select.Option>
+                                            <Select.Option key="13" value="portable-hard-disk-drive">Portable Hard Disk Drive </Select.Option>
+                                            <Select.Option key="14" value="hard-disk-drive">Hard Disk Drive </Select.Option>
+                                            <Select.Option key="15" value="SSD-Hard-Disk"> SSD Hard Disk</Select.Option>
+                                            <Select.Option key="16" value="ram">Ram </Select.Option>
+                                            <Select.Option key="17" value="laptop-ram">Laptop Ram </Select.Option>
+                                            <Select.Option key="18" value="portable-ssd-hard-disk">Portable SSD Hard Disk </Select.Option>
+                                            <Select.Option key="19" value="sound-card">Sound Card </Select.Option>
+                                            <Select.Option key="20" value="optical-hdd"> Optical Hdd</Select.Option>
+                                            <Select.Option key="21" value="stabilizer"> Stabilizer</Select.Option>
+                                            <Select.Option key="22" value="vertical-graphics-card-holder">Vertical Graphics Card Holder </Select.Option>
+                                            <Select.Option key="23" value="monitor">Monitor </Select.Option>
+                                            <Select.Option key="24" value="server-networking"> Server Networking</Select.Option>
                                         </Select>
                                     </Form.Item>
                                 </Col>
@@ -153,7 +187,7 @@ function Home() {
                                 marginLeft: 0,
                                 marginRight: 0,
                                 paddingTop: 10,
-                                maxWidth: 1400,
+                                maxWidth: 1200,
                                 marginBottom: 100
                             }}
                             hidden={product.length === 0 ? true : false}
@@ -161,7 +195,7 @@ function Home() {
                             {
                                 product.map(ii =>
                                     <Col
-                                        xs={12} sm={12} md={12} lg={8} xl={4}
+                                        xs={12} sm={10} md={8} lg={6} xl={6}
                                         style={{ paddingTop: 10 }}
                                     >
                                         <Card
@@ -179,7 +213,7 @@ function Home() {
                                                 ) : ""
                                             }
                                             style={{
-                                                minHeight: 550,
+                                                minHeight: 400,
                                                 marginTop: 20,
                                                 marginBottom: 20,
                                                 overflow: "hidden"
@@ -199,39 +233,12 @@ function Home() {
                                         >
 
                                             <b>{ii.name}</b>
-                                            <Meta 
-                                                style={{ 
-                                                    marginTop: 5, 
-                                                    height: 110, 
-                                                    overflow: "hidden" 
-                                                }} 
-                                                description={ii.details} 
-                                            />
 
                                             <div
                                                 style={{
                                                     position: 'absolute',
                                                     right: 0,
-                                                    bottom: 65,
-                                                    width: '100%',
-                                                    marginBottom: 2
-                                                }}
-                                            >
-                                                <Button
-                                                    type="primary"
-                                                    size="small"
-                                                    block
-                                                    disabled={!jscookie.get("userid")}
-                                                    onClick={() => addForCart({ details: ii })}
-                                                >
-                                                    {jscookie.get("userid") ? "Add to Cart" : "Login Required"}
-                                                </Button>
-                                            </div>
-                                            <div
-                                                style={{
-                                                    position: 'absolute',
-                                                    right: 0,
-                                                    bottom: 42,
+                                                    bottom: 44,
                                                     width: '100%',
                                                 }}
                                             >
@@ -244,12 +251,12 @@ function Home() {
                                                     bottom: 0,
                                                     width: '100%',
                                                     padding: '10px 16px',
-                                                    background: '#cdcdcd',
+                                                    background: '#426184',
                                                     textAlign: 'right',
-                                                    borderTop: '1px solid #cdcdcd'
+                                                    borderTop: '1px solid #fff'
                                                 }}
                                             >
-                                                <b>Price: {ii.price}</b>
+                                                <b style={{ color: "#fff" }}>Price: {ii.price}</b>
                                             </div>
                                         </Card>
                                     </Col>

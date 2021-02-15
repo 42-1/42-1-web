@@ -17,15 +17,15 @@ function PageViewDrawer({ pageView }) {
     return (
         <>
             <Button
-                type="primary"
-                size="small"
+                type="default"
+                size="large"
                 onClick={showDrawer}
                 block
             >View</Button>
 
             <Drawer
                 placement="right"
-                closable={false}
+                closable
                 onClose={onClose}
                 visible={visible}
                 width={"100%"}
@@ -43,7 +43,7 @@ function PageViewDrawer({ pageView }) {
                         borderTop: '1px solid #ebebeb'
                     }}
                 >
-                    <Button type="default" block onClick={onClose}>Close</Button>
+                    <Button type="primary" block onClick={onClose}>Close</Button>
                 </div>
             </Drawer>
         </>
