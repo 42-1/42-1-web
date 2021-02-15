@@ -211,12 +211,20 @@ function Home() {
                                 </Col>
                             </Row>
                         </Form>
-                        <ins 
+                        <ins
                             className="adsbygoogle"
-                            style={{display:"inline-block", width: window.innerWidth, height:90}}
+                            style={{ display: "inline-block", width: window.innerWidth, height: 90 }}
                             data-ad-client="ca-pub-4319664345109203"
                             data-ad-slot="3781032952"
                         ></ins>
+                        <amp-ad width="100vw" height="320"
+                            type="adsense"
+                            data-ad-client="ca-pub-4319664345109203"
+                            data-ad-slot="3781032952"
+                            data-auto-format="rspv"
+                            data-full-width="">
+                            <div overflow=""></div>
+                        </amp-ad>
                     </center>
 
 
