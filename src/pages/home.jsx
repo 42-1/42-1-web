@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
-import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Button, Result, Select, Form, message, Progress } from 'antd';
+import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress } from 'antd';
 import jscookie from 'js-cookie'
 
 import api from '../service/api'
@@ -17,7 +17,7 @@ function Home() {
     const [product, setProduct] = useState([])
     const [selectedproduct, setselectedproduct] = useState("0")
     const [loading, setLoading] = useState(true)
-    const [forceupdate, setForceupdate] = useState(Number(new Date()))
+    const [_, setForceupdate] = useState(Number(new Date()))
 
     useEffect(() => {
         getProductAll()
@@ -31,7 +31,7 @@ function Home() {
         if (list.status) {
             setProduct(list.return)
         }
-        // setLoading(false)
+        setLoading(false)
     }
 
 
@@ -63,6 +63,7 @@ function Home() {
                             position: "fixed",
                             marginLeft: -20,
                             marginRight: -20,
+                            zIndex: 99
                         }}
                     >
                         <Progress percent={100} status="active" showInfo={false} />
@@ -76,18 +77,11 @@ function Home() {
                         }}
                     >
                         <Row>
-                            <Col
-                                xs={0} sm={0} md={10} lg={9} xl={9}
-                            />
-                          
-                            <Col
-                                xs={24} sm={24} md={10} lg={8} xl={8}
-
-                            >
-                                <img src={loadingGIF} style={{height: 250}}/>
+                            <Col xs={0} sm={0} md={10} lg={8} xl={9} />
+                            <Col xs={24} sm={24} md={10} lg={8} xl={8}>
+                                <img src={loadingGIF} style={{ height: 250 }} />
                             </Col>
                         </Row>
-
                     </div>
                 </>
             }
