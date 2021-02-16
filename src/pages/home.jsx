@@ -226,7 +226,7 @@ function Home() {
                             data-full-width="">
                             <div overflow=""></div>
                         </amp-ad> */}
-                        <AdSense.Google
+                        {/* <AdSense.Google
                             client='ca-pub-4319664345109203'
                             slot='3781032952'
                             style={{ 
@@ -235,7 +235,7 @@ function Home() {
                                 height: 90 
                             }}
                             format='auto'
-                        />
+                        /> */}
                         <AdSense.Google
                             client='ca-pub-4319664345109203'
                             slot='1314312404'
