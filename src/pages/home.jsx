@@ -173,7 +173,7 @@ function Home() {
                             <div
                                 style={{ maxWidth: 1200, textAlign: "left" }}
                             >
-                                <Divider orientation="left"> Product Type </Divider>
+                                <Divider orientation="left">Products</Divider>
                                 {
                                     productList.map(e =>
                                         <Tag color={"green"} style={{ margin: 5 }}>
