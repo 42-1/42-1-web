@@ -228,13 +228,13 @@ function Home() {
                         </amp-ad> */}
                         <AdSense.Google
                             client='ca-pub-4319664345109203'
-                            slot='3781032952'
+                            slot='1314312404'
                             style={{ 
                                 display: "inline-block", 
                                 width: window.innerWidth, 
                                 height: 90 
                             }}
-                            format=''
+                            format='fluid'
                         />
                     </center>
 
