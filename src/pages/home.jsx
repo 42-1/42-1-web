@@ -2,6 +2,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress } from 'antd';
 import jscookie from 'js-cookie'
+import AdSense from 'react-adsense';
 
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
@@ -211,7 +212,7 @@ function Home() {
                                 </Col>
                             </Row>
                         </Form>
-                        <ins
+                        {/* <ins
                             className="adsbygoogle"
                             style={{ display: "inline-block", width: window.innerWidth, height: 90 }}
                             data-ad-client="ca-pub-4319664345109203"
@@ -224,7 +225,17 @@ function Home() {
                             data-auto-format="rspv"
                             data-full-width="">
                             <div overflow=""></div>
-                        </amp-ad>
+                        </amp-ad> */}
+                        <AdSense.Google
+                            client='ca-pub-4319664345109203'
+                            slot='3781032952'
+                            style={{ 
+                                display: "inline-block", 
+                                width: window.innerWidth, 
+                                height: 90 
+                            }}
+                            format=''
+                        />
                     </center>
 
 
