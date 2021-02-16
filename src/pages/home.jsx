@@ -1,12 +1,13 @@
 /* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
-import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress } from 'antd';
+import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider } from 'antd';
 import jscookie from 'js-cookie'
 import AdSense from 'react-adsense';
 
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
 import loadingGIF from './../loading.gif'
+import productList from '../productList'
 
 import SignIN from '../components/sign'
 import AddToCart from '../components/addtocart'
@@ -48,6 +49,29 @@ function Home() {
 
         message.destroy()
         message.info("Add To Cart")
+    }
+
+
+    async function productType(e) {
+        message.destroy()
+        message.loading("Please wait...", 0)
+        setProduct([])
+        setForceupdate(Number(new Date()))
+        setLoading(true)
+        setselectedproduct("0")
+        let list = await api.ax_post({
+            path: "/search",
+            params: {
+                type: "product",
+                name: e
+            }
+        })
+        message.destroy()
+        message.destroy()
+        setForceupdate(Number(new Date()))
+        setProduct(list.return)
+        setselectedproduct(e)
+        setLoading(false)
     }
 
     return (
@@ -96,6 +120,32 @@ function Home() {
                             extra={[
                                 // <AddToCart />,
                                 // <SignIN />,
+                                <Input.Search
+                                    placeholder={"Search Product Name"}
+                                    allowClear
+                                    enterButton
+                                    style={{
+                                        width: "100%",
+                                        borderLeft: "none",
+                                        borderRight: "none",
+                                        borderTop: "none"
+                                    }}
+                                    onSearch={async (e) => {
+                                        message.destroy()
+                                        message.loading("Searching, Please wait...", 0)
+                                        let list = await api.ax_post({
+                                            path: "/search",
+                                            params: {
+                                                type: "search",
+                                                name: e
+                                            }
+                                        })
+                                        message.destroy()
+                                        message.destroy()
+                                        setProduct(list.return)
+                                    }}
+                                    size="middle"
+                                />
                             ]}
                         />
                     </center>
@@ -120,97 +170,19 @@ function Home() {
                                 marginRight: "auto"
                             }}
                         >
-                            <Row
-                                gutter={16}
+                            <div
                                 style={{ maxWidth: 1200, textAlign: "left" }}
                             >
-                                <Col
-                                    xs={24} sm={24} md={12} lg={12} xl={12}
-                                >
-                                    <Form.Item label="Search">
-                                        <Input
-                                            placeholder={"Search Product Name"}
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                            onChange={async (e) => {
-                                                let list = await api.ax_post({
-                                                    path: "/search",
-                                                    params: {
-                                                        type: "search",
-                                                        name: e.target.value
-                                                    }
-                                                })
-                                                setProduct(list.return)
-                                            }}
-                                            size="large"
-                                        />
-                                    </Form.Item>
-                                </Col>
-
-                                <Col
-                                    xs={24} sm={24} md={12} lg={12} xl={12}
-                                >
-                                    <Form.Item label="Product Type">
-                                        <Select
-                                            value={selectedproduct}
-                                            size="large"
-                                            placeholder="Select Product Type"
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                            onChange={async (e) => {
-                                                message.destroy()
-                                                message.loading("Please wait...", 0)
-                                                setProduct([])
-                                                setForceupdate(Number(new Date()))
-                                                setLoading(true)
-                                                setselectedproduct("0")
-                                                let list = await api.ax_post({
-                                                    path: "/search",
-                                                    params: {
-                                                        type: "product",
-                                                        name: e
-                                                    }
-                                                })
-                                                message.destroy()
-                                                message.destroy()
-                                                setForceupdate(Number(new Date()))
-                                                setProduct(list.return)
-                                                setselectedproduct(e)
-                                                setLoading(false)
-                                            }}
-                                        >
-                                            <Select.Option key="0" value="0" disabled>Select Product Type</Select.Option>
-                                            <Select.Option key="1" value="headphone">Headphone</Select.Option>
-                                            <Select.Option key="2" value="keyboards">Keyboards</Select.Option>
-                                            <Select.Option key="3" value="micro-sd-card">Micro/SD card</Select.Option>
-                                            <Select.Option key="4" value="microphone">Microphone</Select.Option>
-
-                                            <Select.Option key="5" value="casing"> Casing </Select.Option>
-                                            <Select.Option key="6" value="casing-cooler">Casing Cooler </Select.Option>
-                                            <Select.Option key="7" value="power-supply">Power Supply </Select.Option>
-                                            <Select.Option key="8" value="water-or-liquid-cooling"> Water or Liquid Cooling</Select.Option>
-                                            <Select.Option key="9" value="processor">Processor </Select.Option>
-                                            <Select.Option key="10" value="CPU-Cooler">CPU Cooler </Select.Option>
-                                            <Select.Option key="11" value="motherboard"> Motherboard</Select.Option>
-                                            <Select.Option key="12" value="graphics-card">Graphics Card </Select.Option>
-                                            <Select.Option key="13" value="portable-hard-disk-drive">Portable Hard Disk Drive </Select.Option>
-                                            <Select.Option key="14" value="hard-disk-drive">Hard Disk Drive </Select.Option>
-                                            <Select.Option key="15" value="SSD-Hard-Disk"> SSD Hard Disk</Select.Option>
-                                            <Select.Option key="16" value="ram">Ram </Select.Option>
-                                            <Select.Option key="17" value="laptop-ram">Laptop Ram </Select.Option>
-                                            <Select.Option key="18" value="portable-ssd-hard-disk">Portable SSD Hard Disk </Select.Option>
-                                            <Select.Option key="19" value="sound-card">Sound Card </Select.Option>
-                                            <Select.Option key="20" value="optical-hdd"> Optical Hdd</Select.Option>
-                                            <Select.Option key="21" value="stabilizer"> Stabilizer</Select.Option>
-                                            <Select.Option key="22" value="vertical-graphics-card-holder">Vertical Graphics Card Holder </Select.Option>
-                                            <Select.Option key="23" value="monitor">Monitor </Select.Option>
-                                            <Select.Option key="24" value="server-networking"> Server Networking</Select.Option>
-                                        </Select>
-                                    </Form.Item>
-                                </Col>
-                            </Row>
+                                <Divider orientation="left"> Product Type </Divider>
+                                {
+                                    productList.map(e =>
+                                        <Tag color={"green"} style={{ margin: 5 }}>
+                                            <a onClick={() => productType(e.value)}>{e.title}</a>
+                                        </Tag>
+                                    )
+                                }
+                                <Divider />
+                            </div>
                         </Form>
                         {/* <ins
                             className="adsbygoogle"
@@ -239,10 +211,10 @@ function Home() {
                         <AdSense.Google
                             client='ca-pub-4319664345109203'
                             slot='1314312404'
-                            style={{ 
-                                display: "inline-block", 
-                                width: window.innerWidth, 
-                                height: 90 
+                            style={{
+                                display: "inline-block",
+                                width: window.innerWidth,
+                                height: 90
                             }}
                             layoutKey="-eo-29+1q-1j+dw"
                             format='fluid'
