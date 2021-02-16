@@ -184,30 +184,6 @@ function Home() {
                                 <Divider />
                             </div>
                         </Form>
-                        {/* <ins
-                            className="adsbygoogle"
-                            style={{ display: "inline-block", width: window.innerWidth, height: 90 }}
-                            data-ad-client="ca-pub-4319664345109203"
-                            data-ad-slot="3781032952"
-                        ></ins>
-                        <amp-ad width="100vw" height="320"
-                            type="adsense"
-                            data-ad-client="ca-pub-4319664345109203"
-                            data-ad-slot="3781032952"
-                            data-auto-format="rspv"
-                            data-full-width="">
-                            <div overflow=""></div>
-                        </amp-ad> */}
-                        {/* <AdSense.Google
-                            client='ca-pub-4319664345109203'
-                            slot='3781032952'
-                            style={{ 
-                                display: "inline-block", 
-                                width: window.innerWidth, 
-                                height: 90 
-                            }}
-                            format='auto'
-                        /> */}
                         <AdSense.Google
                             client='ca-pub-4319664345109203'
                             slot='1314312404'
