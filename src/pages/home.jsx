@@ -29,11 +29,11 @@ function Home() {
     async function getProductAll() {
         setLoading(true)
         setProduct([])
-        let list = await api.ax_get({ path: "/list" })
-        if (list.status) {
-            setProduct(list.return)
-        }
-        setLoading(false)
+        // let list = await api.ax_get({ path: "/list" })
+        // if (list.status) {
+        //     setProduct(list.return)
+        // }
+        // setLoading(false)
     }
 
 
@@ -102,8 +102,8 @@ function Home() {
                         }}
                     >
                         <Row>
-                            <Col xs={0} sm={0} md={10} lg={8} xl={9} />
-                            <Col xs={24} sm={24} md={10} lg={8} xl={8}>
+                            <Col xs={2} sm={4} md={6} lg={8} xl={9} />
+                            <Col xs={22} sm={20} md={10} lg={8} xl={8}>
                                 <img src={loadingGIF} style={{ height: 250 }} />
                             </Col>
                         </Row>
