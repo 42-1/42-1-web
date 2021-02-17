@@ -255,7 +255,7 @@ function Home() {
                                                 ) : ""
                                             }
                                             style={{
-                                                minHeight: 400,
+                                                minHeight: 450,
                                                 marginTop: 20,
                                                 marginBottom: 20,
                                                 overflow: "hidden"
