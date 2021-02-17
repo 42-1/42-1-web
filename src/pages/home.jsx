@@ -29,11 +29,11 @@ function Home() {
     async function getProductAll() {
         setLoading(true)
         setProduct([])
-        // let list = await api.ax_get({ path: "/list" })
-        // if (list.status) {
-        //     setProduct(list.return)
-        // }
-        // setLoading(false)
+        let list = await api.ax_get({ path: "/list" })
+        if (list.status) {
+            setProduct(list.return)
+        }
+        setLoading(false)
     }
 
 
