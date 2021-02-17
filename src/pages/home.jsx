@@ -189,7 +189,7 @@ function Home() {
                             slot='1314312404'
                             style={{
                                 display: "inline-block",
-                                width: window.innerWidth,
+                                width: window.innerWidth - 200,
                                 height: 90
                             }}
                             layoutKey="-eo-29+1q-1j+dw"
