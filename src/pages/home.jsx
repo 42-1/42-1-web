@@ -108,6 +108,20 @@ function Home() {
                             </Col>
                         </Row>
                     </div>
+
+                    <div
+                        style={{
+                            position: 'absolute',
+                            right: 0,
+                            bottom: 0,
+                            width: '100%',
+                            padding: '10px 16px',
+                            textAlign: 'right',
+                            borderTop: '1px solid #fff'
+                        }}
+                    >
+                        <p style={{ color: "black", fontSize: 10 }}>v2.0.1</p>
+                    </div>
                 </>
             }
             {
@@ -272,6 +286,7 @@ function Home() {
                                             >
                                                 <PageViewDrawer pageView={ii.url} />
                                             </div>
+
                                             <div
                                                 style={{
                                                     position: 'absolute',
