@@ -9,7 +9,7 @@ module.exports = [
     },
     {
         title: "Micro/SD card",
-        value: "micro-sd-card"
+        value: "micro_sd_card"
     },
     {
         title: "Microphone",
@@ -21,15 +21,15 @@ module.exports = [
     },
     {
         title: "Casing Cooler",
-        value: "casing-cooler"
+        value: "casing_coolerr"
     },
     {
         title: "Power Supply",
-        value: "power-supply"
+        value: "power_supply"
     },
     {
         title: "Water or Liquid Cooling",
-        value: "water-or-liquid-cooling"
+        value: "water_or_liquid_cooling"
     },
     {
         title: "Processor",
@@ -37,7 +37,7 @@ module.exports = [
     },
     {
         title: "CPU Cooler",
-        value: "CPU-Cooler"
+        value: "cpu_Cooler"
     },
     {
         title: "Motherboard",
@@ -45,19 +45,19 @@ module.exports = [
     },
     {
         title: "Graphics Card",
-        value: "graphics-card"
+        value: "graphics_card"
     },
     {
         title: "Portable Hard Disk Drive",
-        value: "portable-hard-disk-drive"
+        value: "portable_hard_disk_drive"
     },
     {
         title: "Hard Disk Drive",
-        value: "hard-disk-drive"
+        value: "hard_disk_drive"
     },
     {
         title: "SSD Hard Disk",
-        value: "SSD-Hard-Disk"
+        value: "ssd_hard_disk"
     },
     {
         title: "Ram",
@@ -65,19 +65,19 @@ module.exports = [
     },
     {
         title: "Laptop Ram",
-        value: "laptop-ram"
+        value: "laptop_ram"
     },
     {
         title: "Portable SSD Hard Disk",
-        value: "portable-ssd-hard-disk"
+        value: "portable_ssd_hard_disk"
     },
     {
         title: "Sound Card",
-        value: "sound-card"
+        value: "sound_card"
     },
     {
         title: "Optical Hdd",
-        value: "optical-hdd"
+        value: "optical_hdd"
     },
     {
         title: "Stabilizer",
@@ -85,7 +85,7 @@ module.exports = [
     },
     {
         title: "Vertical Graphics Card Holder",
-        value: "vertical-graphics-card-holder"
+        value: "vertical_graphics_card_holder"
     },
     {
         title: "Monitor",
@@ -93,7 +93,7 @@ module.exports = [
     },
     {
         title: "Server Networking",
-        value: "server-networking"
+        value: "server_networking"
     },
     // {
     //     title: "",
