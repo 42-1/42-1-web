@@ -54,7 +54,7 @@ function Home() {
 
     async function productType(e) {
         message.destroy()
-        message.loading("Please wait...", 0)
+        // message.loading("Please wait...", 0)
         setProduct([])
         setForceupdate(Number(new Date()))
         setLoading(true)
