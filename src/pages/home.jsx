@@ -130,6 +130,7 @@ function Home() {
                     <center>
                         <PageHeader
                             title="42-1"
+                            subTitle={"Compare You Product Price"}
                             style={{ borderBottom: "1px solid #e9e9e9", maxWidth: 1400, }}
                             extra={[
                                 // <AddToCart />,
@@ -245,11 +246,13 @@ function Home() {
                                                 ii.source === "startech" ? (
                                                     <img
                                                         src={"https://www.startech.com.bd/image/catalog/logo.png"}
+                                                        alt={ii.source}
                                                         style={{ height: 32, width: 85, float: "left" }}
                                                     />
                                                 ) : ii.source === "ryanscomputers" ? (
                                                     <img
                                                         src={"https://www.ryanscomputers.com/assets/website/img/ryans-computers.svg"}
+                                                        alt={ii.source}
                                                         style={{ height: 32, width: 85, float: "left" }}
                                                     />
                                                 ) : ""
@@ -293,13 +296,27 @@ function Home() {
                                                     right: 0,
                                                     bottom: 0,
                                                     width: '100%',
-                                                    padding: '10px 16px',
-                                                    background: '#426184',
-                                                    textAlign: 'right',
+                                                    background: '#070707',
                                                     borderTop: '1px solid #fff'
                                                 }}
                                             >
-                                                <b style={{ color: "#fff" }}>Price: {ii.price}</b>
+                                                <span style={{ color: "#fff" }}>Price: {ii.price}</span>
+                                                <br />
+                                                <span
+                                                    style={{ color: "#fff" }}
+                                                >
+                                                    <a target="_blank" style={{ color: "#f1ffd0" }} href="https://www.startech.com.bd" >
+                                                        Site: 
+                                                        {
+                                                            ii.source === "startech" &&
+                                                            String(" Startech")
+                                                        }
+                                                        {
+                                                            ii.source === "ryanscomputers" &&
+                                                            String(" Ryans Computers")
+                                                        }
+                                                    </a>
+                                                </span>
                                             </div>
                                         </Card>
                                     </Col>

@@ -17,11 +17,13 @@ function PageViewDrawer({ pageView }) {
     return (
         <>
             <Button
-                type="default"
-                size="large"
+                type="primary"
+                size="small"
                 onClick={showDrawer}
                 block
-            >View</Button>
+            >
+                Product Details
+            </Button>
 
             <Drawer
                 placement="right"
