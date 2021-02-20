@@ -128,7 +128,7 @@ function Home() {
                             borderTop: '1px solid #fff'
                         }}
                     >
-                        <p style={{ color: "black", fontSize: 10 }}>v2.0.1</p>
+                        <p style={{ color: "black", fontSize: 10 }}>v2.3.2</p>
                     </div>
                 </>
             }
