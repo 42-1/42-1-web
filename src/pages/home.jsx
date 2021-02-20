@@ -1,18 +1,15 @@
 /* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
-import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider } from 'antd';
+import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider, Menu, Dropdown, Button } from 'antd';
 import jscookie from 'js-cookie'
 import AdSense from 'react-adsense';
 
+import productList from '../productList'
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
 import loadingGIF from './../loading.gif'
-import productList from '../productList'
 
-import SignIN from '../components/sign'
-import AddToCart from '../components/addtocart'
 
-const { Meta } = Card;
 
 function Home() {
 
@@ -74,6 +71,17 @@ function Home() {
         setLoading(false)
     }
 
+    function menu(arr) {
+        return <Menu>
+            {arr.map((e, k) =>
+                <Menu.Item key={k + 1} style={{ margin: 5 }}>
+                    <a onClick={() => productType(e.value)}>{e.title}</a>
+                </Menu.Item>
+            )}
+        </Menu>
+    }
+
+
     return (
         <Fragment>
             {
@@ -130,7 +138,7 @@ function Home() {
                     <center>
                         <PageHeader
                             title="42-1"
-                            subTitle={"Compare You Product Price"}
+                            subTitle={"Compare Your Product Price"}
                             style={{ borderBottom: "1px solid #e9e9e9", maxWidth: 1400, }}
                             extra={[
                                 // <AddToCart />,
@@ -186,15 +194,16 @@ function Home() {
                             }}
                         >
                             <div
-                                style={{ maxWidth: 1200, textAlign: "left" }}
+                                style={{ maxWidth: 1200 }}
                             >
-                                <Divider orientation="left">Products</Divider>
+                                <Divider orientation="center">Products</Divider>
                                 {
-                                    productList.map(e =>
-                                        <Tag color={"green"} style={{ margin: 5 }}>
-                                            <a onClick={() => productType(e.value)}>{e.title}</a>
-                                        </Tag>
-                                    )
+                                    productList.map(a =>
+                                        <Dropdown overlay={() => menu(a.entry)} trigger={['click']}>
+                                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                                <Button type="primary" style={{ marginRight: 5 }}>{a.title}</Button>
+                                            </a>
+                                        </Dropdown>)
                                 }
                                 <Divider />
                             </div>
@@ -306,7 +315,7 @@ function Home() {
                                                     style={{ color: "#fff" }}
                                                 >
                                                     <a target="_blank" style={{ color: "#f1ffd0" }} href="https://www.startech.com.bd" >
-                                                        Site: 
+                                                        Site:
                                                         {
                                                             ii.source === "startech" &&
                                                             String(" Startech")
