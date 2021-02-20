@@ -8,7 +8,7 @@ module.exports = [
             },
             {
                 title: "CPU Cooler",
-                value: "cpu_Cooler"
+                value: "cpu_cooler"
             },
             {
                 title: "Motherboard",
