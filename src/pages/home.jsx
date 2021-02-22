@@ -2,11 +2,14 @@
 import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider, Menu, Dropdown, Button } from 'antd';
 import jscookie from 'js-cookie'
-import AdSense from 'react-adsense';
+
 
 import productList from '../productList'
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
+import AmazonAssociates from '../components/amazonAssociates'
+import GoogleAdSence from '../components/googleAdSense'
+
 import loadingGIF from './../loading.gif'
 
 
@@ -208,17 +211,6 @@ function Home() {
                                 <Divider />
                             </div>
                         </Form>
-                        <AdSense.Google
-                            client='ca-pub-4319664345109203'
-                            slot='1314312404'
-                            style={{
-                                display: "inline-block",
-                                width: 360,
-                                height: 90
-                            }}
-                            layoutKey="-eo-29+1q-1j+dw"
-                            format='fluid'
-                        />
                     </center>
 
 
@@ -234,70 +226,8 @@ function Home() {
                     {/* NOTE Product Details */}
                     <center>
 
-                        <Row
-                            gutter={24}
-                            style={{
-                                marginLeft: 0,
-                                marginRight: 0,
-                                paddingTop: 10,
-                                marginBottom: 5,
-                                maxWidth: 1200,
-                            }}
-                        >
-                            <Col
-                                xs={12} sm={10} md={8} lg={6} xl={6}
-                                style={{ paddingTop: 10 }}
-                            >
-                                <iframe
-                                    style={{
-                                        height: 240,
-                                    }}
-                                    marginwidth="0"
-                                    marginheight="0"
-                                    scrolling="no"
-                                    frameborder="0"
-                                    src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=421shp-20&marketplace=amazon&amp;region=US&placement=B07ZZVX1F2&asins=B07ZZVX1F2&linkId=d78871069a16908ea9cba9af930f06a6&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
-                                </iframe>
-                            </Col>
-                            <Col
-                                xs={12} sm={10} md={8} lg={6} xl={6}
-                                style={{ paddingTop: 10 }}
-                            >
-                                <iframe
-                                    style={{
-                                        height: 240,
-                                        textAlign: "center"
-                                    }}
-                                    marginwidth="0"
-                                    marginheight="0"
-                                    scrolling="no"
-                                    frameborder="0"
-                                    src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=421shp-20&marketplace=amazon&amp;region=US&placement=B000J07BRQ&asins=B000J07BRQ&linkId=cf718a8603ca0457bf6fa4be33737059&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
-                                </iframe>
-                            </Col>
-                            <Col
-                                xs={12} sm={10} md={8} lg={6} xl={6}
-                                style={{ paddingTop: 10 }}
-                            >
-                                <iframe
-                                    style={{
-                                        height: 240,
-                                    }}
-                                    marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=421shp-20&marketplace=amazon&amp;region=US&placement=B07J2FGZSM&asins=B07J2FGZSM&linkId=11e4f51d0d0bd966930c8e5b2cd6339b&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
-                                </iframe>
-                            </Col>
-                            <Col
-                                xs={12} sm={10} md={8} lg={6} xl={6}
-                                style={{ paddingTop: 10 }}
-                            >
-                                <iframe 
-                                    style={{
-                                        height: 240,
-                                    }} 
-                                    marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=421shp-20&marketplace=amazon&amp;region=US&placement=B07N8VFFNS&asins=B07N8VFFNS&linkId=031a580c70ac7b4876ff76a7b87cd41e&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
-                                </iframe>
-                            </Col>
-                        </Row>
+                        <GoogleAdSence />
+                        <AmazonAssociates />
 
                         <Row
                             gutter={24}
