@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider, Menu, Dropdown, Button } from 'antd';
 import jscookie from 'js-cookie'
 
-
+import PgHeader from './../components/PgHeader'
 import productList from '../productList'
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
@@ -11,7 +11,9 @@ import AmazonAssociates from '../components/amazonAssociates'
 import GoogleAdSence from '../components/googleAdSense'
 
 import loadingGIF from './../loading.gif'
-
+import {
+    Link,
+} from "react-router-dom";
 
 
 function Home() {
@@ -136,16 +138,11 @@ function Home() {
                 </>
             }
             {
-                !loading &&
-                <div>
-                    <center>
-                        <PageHeader
-                            title="42-1"
-                            subTitle={"Compare Your Product Price"}
-                            style={{ borderBottom: "1px solid #e9e9e9", maxWidth: 1400, }}
+                !loading && 
+                <>
+                    <div>
+                        <PgHeader 
                             extra={[
-                                // <AddToCart />,
-                                // <SignIN />,
                                 <Input.Search
                                     placeholder={"Search Product Name"}
                                     allowClear
@@ -174,161 +171,163 @@ function Home() {
                                 />
                             ]}
                         />
-                    </center>
-
-                    <Space />
-
-                    <div style={{ margin: 20, maxWidth: 1400, }}>
-                        <Skeleton active loading={loading} />
+                        <div style={{ margin: 20, maxWidth: 1400, }}>
+                            <Skeleton active loading={loading} />
+                        </div>
                     </div>
-                </div>
-            }
-            {
-                !loading &&
-                <>
-                    {/* NOTE Searching */}
-                    <center>
-                        <Form
-                            layout="vertical"
-                            style={{
-                                padding: 10,
-                                marginLeft: "auto",
-                                marginRight: "auto"
-                            }}
-                        >
-                            <div
-                                style={{ maxWidth: 1200 }}
+
+                    <>
+                        {/* NOTE Searching */}
+                        <center>
+                            <Form
+                                layout="vertical"
+                                style={{
+                                    padding: 10,
+                                    marginLeft: "auto",
+                                    marginRight: "auto"
+                                }}
                             >
-                                <Divider orientation="center">Products</Divider>
+                                <div
+                                    style={{ maxWidth: 1200 }}
+                                >
+                                    <Divider orientation="center">Products</Divider>
+                                    {
+                                        productList.map(a =>
+                                            <Dropdown  overlay={() => menu(a.entry)} trigger={["hover", "click" ]}>
+                                                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                                    <Button type="primary" style={{ margin: 5 }}>{a.title}</Button>
+                                                </a>
+                                            </Dropdown>)
+                                    }
+                                    <Divider />
+                                </div>
+                            </Form>
+                        </center>
+
+                        {/* NOTE Product Details */}
+                        <center>
+
+                            <GoogleAdSence />
+                            <AmazonAssociates />
+
+                            <Row
+                                gutter={24}
+                                style={{
+                                    marginLeft: 0,
+                                    marginRight: 0,
+                                    paddingTop: 10,
+                                    maxWidth: 1200,
+                                    marginBottom: 100
+                                }}
+                                hidden={product.length === 0 ? true : false}
+                            >
                                 {
-                                    productList.map(a =>
-                                        <Dropdown overlay={() => menu(a.entry)} trigger={['click']}>
-                                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                                <Button type="primary" style={{ marginRight: 5 }}>{a.title}</Button>
-                                            </a>
-                                        </Dropdown>)
-                                }
-                                <Divider />
-                            </div>
-                        </Form>
-                    </center>
-
-
-                    {/* NOTE No Product Found */}
-                    {
-                        product.length === 0 &&
-                        <Result
-                            status="warning"
-                            title="No Product Found"
-                        />
-                    }
-
-                    {/* NOTE Product Details */}
-                    <center>
-
-                        <GoogleAdSence />
-                        <AmazonAssociates />
-
-                        <Row
-                            gutter={24}
-                            style={{
-                                marginLeft: 0,
-                                marginRight: 0,
-                                paddingTop: 10,
-                                maxWidth: 1200,
-                                marginBottom: 100
-                            }}
-                            hidden={product.length === 0 ? true : false}
-                        >
-                            {
-                                product.map(ii =>
-                                    <Col
-                                        xs={12} sm={10} md={8} lg={6} xl={6}
-                                        style={{ paddingTop: 10 }}
-                                    >
-                                        <Card
-                                            title={
-                                                ii.source === "startech" ? (
-                                                    <img
-                                                        src={"https://www.startech.com.bd/image/catalog/logo.png"}
-                                                        alt={ii.source}
-                                                        style={{ height: 32, width: 85, float: "left" }}
-                                                    />
-                                                ) : ii.source === "ryanscomputers" ? (
-                                                    <img
-                                                        src={"https://www.ryanscomputers.com/assets/website/img/ryans-computers.svg"}
-                                                        alt={ii.source}
-                                                        style={{ height: 32, width: 85, float: "left" }}
-                                                    />
-                                                ) : ""
-                                            }
-                                            style={{
-                                                minHeight: 460,
-                                                marginTop: 20,
-                                                marginBottom: 20,
-                                                overflow: "hidden"
-                                            }}
-                                            cover={
-                                                <img
-                                                    style={{
-                                                        padding: 8,
-                                                        width: 120,
-                                                        height: 120,
-                                                        marginTop: 5
-                                                    }}
-                                                    alt={ii.name}
-                                                    src={ii.img}
-                                                />
-                                            }
+                                    product.map(ii =>
+                                        <Col
+                                            xs={12} sm={10} md={8} lg={6} xl={6}
+                                            style={{ paddingTop: 10 }}
                                         >
-
-                                            <b>{ii.name}</b>
-
-                                            <div
+                                            <Card
+                                                title={
+                                                    ii.source === "startech" ? (
+                                                        <img
+                                                            src={"https://www.startech.com.bd/image/catalog/logo.png"}
+                                                            alt={ii.source}
+                                                            style={{ height: 32, width: 85, float: "left" }}
+                                                        />
+                                                    ) : ii.source === "ryanscomputers" ? (
+                                                        <img
+                                                            src={"https://www.ryanscomputers.com/assets/website/img/ryans-computers.svg"}
+                                                            alt={ii.source}
+                                                            style={{ height: 32, width: 85, float: "left" }}
+                                                        />
+                                                    ) : ""
+                                                }
                                                 style={{
-                                                    position: 'absolute',
-                                                    right: 0,
-                                                    bottom: 44,
-                                                    width: '100%',
+                                                    minHeight: 460,
+                                                    marginTop: 20,
+                                                    marginBottom: 20,
+                                                    overflow: "hidden"
                                                 }}
+                                                cover={
+                                                    <img
+                                                        style={{
+                                                            padding: 8,
+                                                            width: 120,
+                                                            height: 120,
+                                                            marginTop: 5
+                                                        }}
+                                                        alt={ii.name}
+                                                        src={ii.img}
+                                                    />
+                                                }
                                             >
-                                                <PageViewDrawer pageView={ii.url} />
-                                            </div>
 
-                                            <div
-                                                style={{
-                                                    position: 'absolute',
-                                                    right: 0,
-                                                    bottom: 0,
-                                                    width: '100%',
-                                                    background: '#070707',
-                                                    borderTop: '1px solid #fff'
-                                                }}
-                                            >
-                                                <span style={{ color: "#fff" }}>Price: {ii.price}</span>
-                                                <br />
-                                                <span
-                                                    style={{ color: "#fff" }}
+                                                <b>{ii.name}</b>
+
+                                                <div
+                                                    style={{
+                                                        position: 'absolute',
+                                                        right: 0,
+                                                        bottom: 44,
+                                                        width: '100%',
+                                                    }}
                                                 >
-                                                    <a target="_blank" style={{ color: "#f1ffd0" }} href="https://www.startech.com.bd" >
-                                                        Site:
+                                                    {/* <PageViewDrawer pageView={ii.url} /> */}
+                                                    <Button
+                                                        type="primary"
+                                                        size="small"
+                                                        // onClick={() => window.location.href = "/" + "13213213213"}
+                                                        block
+                                                    >
+                                                        <Link to={`/` + `13213213213`}>Yahoo</Link>
+                                                    </Button>
+                                                </div>
+
+                                                <div
+                                                    style={{
+                                                        position: 'absolute',
+                                                        right: 0,
+                                                        bottom: 0,
+                                                        width: '100%',
+                                                        background: '#070707',
+                                                        borderTop: '1px solid #fff'
+                                                    }}
+                                                >
+                                                    <span style={{ color: "#fff" }}>Price: {ii.price}</span>
+                                                    <br />
+                                                    <span
+                                                        style={{ color: "#fff" }}
+                                                    >
+                                                        <a target="_blank" style={{ color: "#f1ffd0" }} href="https://www.startech.com.bd" >
+                                                            Site:
                                                         {
-                                                            ii.source === "startech" &&
-                                                            String(" Startech")
-                                                        }
-                                                        {
-                                                            ii.source === "ryanscomputers" &&
-                                                            String(" Ryans Computers")
-                                                        }
-                                                    </a>
-                                                </span>
-                                            </div>
-                                        </Card>
-                                    </Col>
-                                )
-                            }
-                        </Row>
-                    </center>
+                                                                ii.source === "startech" &&
+                                                                String(" Startech")
+                                                            }
+                                                            {
+                                                                ii.source === "ryanscomputers" &&
+                                                                String(" Ryans Computers")
+                                                            }
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </Card>
+                                        </Col>
+                                    )
+                                }
+                            </Row>
+                        </center>
+
+                        {/* NOTE No Product Found */}
+                        {
+                            product.length === 0 &&
+                            <Result
+                                status="warning"
+                                title="No Product Found"
+                            />
+                        }
+                    </>
                 </>
             }
         </Fragment>

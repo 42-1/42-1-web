@@ -5,14 +5,18 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import Home from './../pages/home'
+import Home from '../pages/home'
+import ProductDetails from '../components/productDetails'
 
 export default function Layout() {
     return (
         <Router>
             <Switch>
-                <Route path="/">
+                <Route exact path="/">
                     <Home />
+                </Route>
+                <Route exact path="/:id">
+                    <ProductDetails />
                 </Route>
                 <Route path="*">
                     <NoMatch />
