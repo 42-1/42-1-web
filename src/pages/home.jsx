@@ -40,7 +40,6 @@ function Home() {
 
 
     async function addForCart({ details }) {
-
         let userid = jscookie.get("userid")
         await api.ax_post({
             path: "/addtocart", params: {
@@ -48,19 +47,21 @@ function Home() {
                 details
             }
         })
-
         message.destroy()
         message.info("Add To Cart")
     }
 
 
     async function productType(e) {
+        
         message.destroy()
         // message.loading("Please wait...", 0)
+        
         setProduct([])
         setForceupdate(Number(new Date()))
         setLoading(true)
         setselectedproduct("0")
+        
         let list = await api.ax_post({
             path: "/search",
             params: {
@@ -68,13 +69,16 @@ function Home() {
                 name: e
             }
         })
+        
         message.destroy()
         message.destroy()
+        
         setForceupdate(Number(new Date()))
         setProduct(list.return)
         setselectedproduct(e)
         setLoading(false)
     }
+
 
     function menu(arr) {
         return <Menu>
@@ -89,6 +93,8 @@ function Home() {
 
     return (
         <Fragment>
+            
+            {/* NOTE Loading */}
             {
                 loading &&
                 <>
@@ -137,6 +143,9 @@ function Home() {
                     </div>
                 </>
             }
+
+
+            {/* NOTE After Loading View */}
             {
                 !loading && 
                 <>
@@ -207,7 +216,7 @@ function Home() {
                         {/* NOTE Product Details */}
                         <center>
 
-                            <GoogleAdSence />
+                            {/* <GoogleAdSence /> */}
                             <AmazonAssociates />
 
                             <Row
@@ -276,11 +285,12 @@ function Home() {
                                                     {/* <PageViewDrawer pageView={ii.url} /> */}
                                                     <Button
                                                         type="primary"
-                                                        size="small"
-                                                        // onClick={() => window.location.href = "/" + "13213213213"}
+                                                        size="large"
                                                         block
                                                     >
-                                                        <Link to={`/` + `13213213213`}>Yahoo</Link>
+                                                        <Link to={`/` + ii.name}>
+                                                            Product Details
+                                                        </Link>
                                                     </Button>
                                                 </div>
 

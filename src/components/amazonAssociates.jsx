@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col } from 'antd';
 
+
 export default function AmazonAssociates() {
     return (
         <Fragment>
@@ -53,6 +54,32 @@ export default function AmazonAssociates() {
                         style={{ paddingTop: 10 }}
                     >
                     </Col>
+                </Row>
+
+                <Row 
+                    gutter={16} 
+                    style={{
+                        marginLeft: 0,
+                        marginRight: 0,
+                        paddingTop: 10,
+                        marginBottom: 5,
+                        maxWidth: 1200,
+                    }}
+                >
+                    <Col xs={0} sm={0} md={0} lg={4} xl={4}/>
+                    <Col span={12}>
+                        <iframe 
+                            src="//rcm-na.amazon-adsystem.com/e/cm?o=1&p=26&l=ur1&category=software&banner=1KA3F83MXGSW8Z2RT9G2&f=ifr&linkID=e47ed0630091e15edded576454d9e784&t=421shp-20&tracking_id=421shp-20" 
+                            width="468" 
+                            height="60" 
+                            scrolling="no" 
+                            border="0" 
+                            marginwidth="0" 
+                            style={{ border: "none" }} 
+                            frameborder="0"
+                        ></iframe>
+                    </Col>
+                    <Col xs={0} sm={0} md={0} lg={6} xl={6} />
                 </Row>
             </center>
         </Fragment>
