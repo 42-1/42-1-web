@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Drawer, Button, Form, Input, message } from 'antd';
 import jscookie from 'js-cookie'
-import API from './../service/api'
+import API from '../../service/api'
 
 function SignIN({ pageView }) {
 

@@ -7,8 +7,8 @@ import PgHeader from './../components/PgHeader'
 import productList from '../productList'
 import api from '../service/api'
 import PageViewDrawer from '../components/pageViewDrawer'
-import AmazonAssociates from '../components/amazonAssociates'
-import GoogleAdSence from '../components/googleAdSense'
+import AmazonAssociates from '../components/amazonAssociates/amazonAssociates'
+import GoogleAdSence from '../components/googleAdSense/googleAdSense'
 
 import loadingGIF from './../loading.gif'
 import {

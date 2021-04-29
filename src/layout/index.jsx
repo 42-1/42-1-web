@@ -6,7 +6,8 @@ import {
     Route
 } from "react-router-dom";
 import Home from '../pages/home'
-import ProductDetails from '../components/productDetails'
+import StartechProductDetails from '../components/startech/startechProductDetails'
+
 
 export default function Layout() {
     return (
@@ -15,8 +16,8 @@ export default function Layout() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/:id">
-                    <ProductDetails />
+                <Route exact path="/startech/:id">
+                    <StartechProductDetails />
                 </Route>
                 <Route path="*">
                     <NoMatch />
