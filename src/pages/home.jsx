@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Fragment, useEffect, useState } from 'react';
-import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider, Menu, Dropdown, Button } from 'antd';
+import { Row, Col, Card, Input, Skeleton, Result, Form, message, Progress, Divider, Menu, Dropdown, Button } from 'antd';
 import jscookie from 'js-cookie'
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,6 @@ import api from '../service/api'
 import AmazonAssociates from '../components/amazonAssociates/amazonAssociates'
 
 import loadingGIF from './../loading.gif'
-
-
 
 function Home() {
 
@@ -285,7 +283,7 @@ function Home() {
                                                         size="large"
                                                         block
                                                     >
-                                                        <Link to={`/` + ii.name}>
+                                                        <Link to={`/startech/` + ii.name}>
                                                             Product Details
                                                         </Link>
                                                     </Button>
