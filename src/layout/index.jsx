@@ -6,7 +6,7 @@ import {
     Route
 } from "react-router-dom";
 import Home from '../pages/home'
-import StartechProductDetails from '../components/startech/startechProductDetails'
+import StartechProductDetails from './../components/productList/startech/startechProductDetails'
 
 
 export default function Layout() {

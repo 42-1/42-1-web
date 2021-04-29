@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import PgHeader from './PgHeader'
-import api from '../service/api'
+import PgHeader from '../../PgHeader/PgHeader'
+import api from '../../../service/api'
 import { Row, Col, Card, Button, Result, Divider } from 'antd';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
-import data from './startech/data'
+import data from './data'
 
 const html_header = data.header;
 const html_body_0 = data.body_0;

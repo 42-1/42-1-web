@@ -2,18 +2,15 @@
 import { Fragment, useEffect, useState } from 'react';
 import { PageHeader, Row, Col, Card, Space, Input, Skeleton, Result, Select, Form, message, Progress, Tag, Divider, Menu, Dropdown, Button } from 'antd';
 import jscookie from 'js-cookie'
+import { Link } from "react-router-dom";
 
-import PgHeader from './../components/PgHeader'
+import PgHeader from '../components/PgHeader/PgHeader'
 import productList from '../productList'
 import api from '../service/api'
-import PageViewDrawer from '../components/pageViewDrawer'
 import AmazonAssociates from '../components/amazonAssociates/amazonAssociates'
-import GoogleAdSence from '../components/googleAdSense/googleAdSense'
 
 import loadingGIF from './../loading.gif'
-import {
-    Link,
-} from "react-router-dom";
+
 
 
 function Home() {
